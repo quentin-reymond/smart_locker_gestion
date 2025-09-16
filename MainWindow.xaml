@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="gestion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:gestion"
+        mc:Ignorable="d"
+        Title="Gestion des Casiers Intelligents" 
+        Height="600" Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F7FA"
+        MinWidth="800" MinHeight="500"
+        ResizeMode="CanResizeWithGrip">
+
+    <Window.Resources>
+        <!-- Style pour les cartes -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E8EBF0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="30"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" Opacity="0.08" BlurRadius="20" ShadowDepth="4"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style pour les boutons d'action -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#2C3E50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#34495E"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style pour le bouton admin -->
+        <Style x:Key="AdminButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#95A5B8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#2C3E50"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Header -->
+        <Grid Height="80" VerticalAlignment="Top" Background="White">
+            <Grid.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.05" BlurRadius="10" ShadowDepth="2"/>
+            </Grid.Effect>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="40,0">
+                <!-- Logo/Icon -->
+                <Border Width="40" Height="40" Background="#2C3E50" CornerRadius="8" Margin="0,0,15,0">
+                    <Path Fill="White" 
+                          Data="M12,2L2,7V10C2,16 6,20.9 12,22C18,20.9 22,16 22,10V7L12,2M11,7H13V9H11V7M11,11H13V17H11V11Z" 
+                          Width="20" Height="20" 
+                          Stretch="Uniform"
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center"/>
+                </Border>
+
+                <TextBlock Text="Gestion des Casiers Intelligents" 
+                          FontSize="20" 
+                          FontWeight="SemiBold" 
+                          VerticalAlignment="Center"
+                          Foreground="#2C3E50"/>
+            </StackPanel>
+
+            <Button x:Name="BtnAdminPanel" 
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" 
+                    Margin="40,0"
+                    Style="{StaticResource AdminButtonStyle}"
+                    Click="BtnAdminPanel_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Path Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                          Data="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.35 19.43,11.03L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11.03C4.53,11.35 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" 
+                          Width="16" Height="16" 
+                          Stretch="Uniform"
+                          Margin="0,0,8,0"/>
+                    <TextBlock Text="Admin Panel"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <!-- Main Content -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,80,0,0">
+            <!-- Title Section -->
+            <TextBlock Text="Menu Principal" 
+                       FontSize="32" 
+                       FontWeight="Bold" 
+                       Foreground="#2C3E50" 
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,10"/>
+
+            <TextBlock Text="Sélectionnez une option pour commencer" 
+                       FontSize="16" 
+                       Foreground="#7F8FA6" 
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,60"/>
+
+            <!-- Cards Container -->
+            <Grid Width="650" Height="300">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Gestion Utilisateurs Card -->
+                <Border Grid.Column="0" Style="{StaticResource CardStyle}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <!-- Icon -->
+                        <Border Width="80" Height="80" 
+                                Background="#E8F4FD" 
+                                CornerRadius="40" 
+                                Margin="0,0,0,25">
+                            <Path Fill="#3498DB" 
+                                  Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" 
+                                  Width="40" Height="40" 
+                                  Stretch="Uniform"
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- Title -->
+                        <TextBlock Text="Gestion Utilisateurs" 
+                                   FontSize="20" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#2C3E50" 
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,10"/>
+
+                        <!-- Description -->
+                        <TextBlock Text="Gérer les utilisateurs et leurs accès aux casiers intelligents" 
+                                   FontSize="14" 
+                                   Foreground="#7F8FA6" 
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   LineHeight="20"
+                                   Margin="0,0,0,25"
+                                   TextWrapping="Wrap"
+                                   MaxWidth="200"/>
+
+                        <!-- Button -->
+                        <Button x:Name="BtnGestionUtilisateurs"
+                                Style="{StaticResource ActionButtonStyle}"
+                                Click="BtnGestionUtilisateurs_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Accéder à la gestion" FontSize="14"/>
+                                <Path Fill="White" 
+                                      Data="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" 
+                                      Width="16" Height="16" 
+                                      Stretch="Uniform"
+                                      Margin="8,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <!-- Gestion Casiers Card -->
+                <Border Grid.Column="2" Style="{StaticResource CardStyle}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <!-- Icon -->
+                        <Border Width="80" Height="80" 
+                                Background="#F0E6FF" 
+                                CornerRadius="40" 
+                                Margin="0,0,0,25">
+                            <Path Fill="#8E44AD" 
+                                  Data="M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10A2,2 0 0,1 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z" 
+                                  Width="40" Height="40" 
+                                  Stretch="Uniform"
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- Title -->
+                        <TextBlock Text="Gestion Casiers" 
+                                   FontSize="20" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#2C3E50" 
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,10"/>
+
+                        <!-- Description -->
+                        <TextBlock Text="Surveiller et contrôler l'état des casiers intelligents connectés" 
+                                   FontSize="14" 
+                                   Foreground="#7F8FA6" 
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   LineHeight="20"
+                                   Margin="0,0,0,25"
+                                   TextWrapping="Wrap"
+                                   MaxWidth="200"/>
+
+                        <!-- Button -->
+                        <Button x:Name="BtnGestionCasiers"
+                                Style="{StaticResource ActionButtonStyle}"
+                                Click="BtnGestionCasiers_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Accéder au contrôle" FontSize="14"/>
+                                <Path Fill="White" 
+                                      Data="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" 
+                                      Width="16" Height="16" 
+                                      Stretch="Uniform"
+                                      Margin="8,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
