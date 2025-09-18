@@ -5,95 +5,98 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:gestion"
       mc:Ignorable="d"
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="locker">
+      Title="Gestion des Casiers Intelligents"
+      d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background="White">
 
-        <TextBlock Text="Gestion des Casiers Intelligents"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Center"
-                   Margin="0,20,0,20" />
+        <!-- Header -->
+        <Grid Height="60" VerticalAlignment="Top" Background="White">
+            <Grid.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.1" BlurRadius="5" ShadowDepth="2"/>
+            </Grid.Effect>
 
-        <TextBlock Text="Contrôlez et testez le fonctionnement des casiers"
-                   FontSize="14"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,30" />
-
-        <!-- Ajout d'un StackPanel pour descendre les cadres -->
-        <StackPanel VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Margin="0,50,0,0">
-
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top">
-
-                <Border Background="LightGray"
-                        CornerRadius="10"
-                        Padding="20"
-                        Margin="5"
-                        Width="250">
-
-                    <StackPanel>
-                        <TextBlock Text="Casier #1"
-                                   FontSize="18"
-                                   FontWeight="Bold" />
-                        <TextBlock Text="Disponible"
-                                   Foreground="Green"
-                                   FontSize="14" />
-                        <TextBlock Text="Dernière utilisation : 2024-05-14 15:30"
-                                   FontSize="12" />
-                        <Button Content="Ouvrir pour Test"
-                                Background="Blue"
-                                Foreground="White"
-                                Margin="0,10,0,0" />
-                    </StackPanel>
-
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+                <!-- Logo/Icon -->
+                <Border Width="32" Height="32" Background="#2C3E50" CornerRadius="6" Margin="0,0,15,0">
+                    <Path Fill="White" 
+                          Data="M12,2L2,7V10C2,16 6,20.9 12,22C18,20.9 22,16 22,10V7L12,2M11,7H13V9H11V7M11,11H13V17H11V11Z" 
+                          Width="18" Height="18" 
+                          Stretch="Uniform"
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center"/>
                 </Border>
 
-                <Border Background="LightGray"
-                        CornerRadius="10"
-                        Padding="20"
-                        Margin="5"
-                        Width="250">
+                <TextBlock Text="Gestion des Casiers Intelligents" 
+                          FontSize="18" 
+                          FontWeight="SemiBold" 
+                          VerticalAlignment="Center"
+                          Foreground="#2C3E50"/>
+            </StackPanel>
 
-                    <StackPanel>
-                        <TextBlock Text="Casier #2"
-                                   FontSize="18"
-                                   FontWeight="Bold" />
-                        <TextBlock Text="Occupé"
-                                   Foreground="Red"
-                                   FontSize="14" />
-                        <TextBlock Text="Dernière utilisation : 2024-05-16 09:15"
-                                   FontSize="12" />
-                        <Button Content="Ouvrir pour Test"
-                                Background="Blue"
-                                Foreground="White"
-                                Margin="0,10,0,0" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0">
+                <Button x:Name="BtnRetour" Content="← Retour au menu" Style="{StaticResource HeaderButtonStyle}" Click="BtnRetour_Click"/>
+                <Button x:Name="BtnAdmin" Content="⚙ Admin Panel" Style="{StaticResource HeaderButtonStyle}" Margin="10,0,0,0" Click="BtnAdmin_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Main Content -->
+        <Grid Margin="0,60,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="30,30,30,20">
+                    <TextBlock Text="Contrôlez et testez le fonctionnement des casiers"
+                               FontSize="14"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,30" />
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top">
+
+                        <Border Background="LightGray"
+                                CornerRadius="10"
+                                Padding="20"
+                                Margin="5"
+                                Width="250">
+                            <StackPanel>
+                                <TextBlock Text="Casier #1"
+                                           FontSize="18"
+                                           FontWeight="Bold" />
+                                <TextBlock Text="Disponible"
+                                           Foreground="Green"
+                                           FontSize="14" />
+                                <TextBlock Text="Dernière utilisation : 2024-05-14 15:30"
+                                           FontSize="12" />
+                                <Button Content="Ouvrir pour Test"
+                                        Background="Blue"
+                                        Foreground="White"
+                                        Margin="0,10,0,0" />
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="LightGray"
+                                CornerRadius="10"
+                                Padding="20"
+                                Margin="5"
+                                Width="250">
+                            <StackPanel>
+                                <TextBlock Text="Casier #2"
+                                           FontSize="18"
+                                           FontWeight="Bold" />
+                                <TextBlock Text="Occupé"
+                                           Foreground="Red"
+                                           FontSize="14" />
+                                <TextBlock Text="Dernière utilisation : 2024-05-16 09:15"
+                                           FontSize="12" />
+                                <Button Content="Ouvrir pour Test"
+                                        Background="Blue"
+                                        Foreground="White"
+                                        Margin="0,10,0,0" />
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
-
-                </Border>
-
-            </StackPanel>
-
-            <StackPanel VerticalAlignment="Bottom"
-                        HorizontalAlignment="Center"
-                        Margin="0,20,0,0">
-
-                <Button Content="Retour au menu"
-                        Background="Gray"
-                        Foreground="White" />
-
-                <Button Content="Admin Panel"
-                        Background="DarkGray"
-                        Foreground="White"/>
-
-            </StackPanel>
-
-        </StackPanel>
-
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
-
 </Page>

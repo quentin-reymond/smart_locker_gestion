@@ -149,7 +149,7 @@
                                       VerticalAlignment="Center" 
                                       Margin="12,0,8,0"/>
 
-                                <TextBox x:Name="TxtSearch" 
+                                <TextBox x:Name="TxtSearchBox" 
                                          Grid.Column="1" 
                                          Background="Transparent"
                                          BorderThickness="0"
@@ -169,7 +169,7 @@
                                         <Style TargetType="TextBlock">
                                             <Setter Property="Visibility" Value="Collapsed"/>
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=TxtSearch}" Value="">
+                                                <DataTrigger Binding="{Binding Text, ElementName=TxtSearchBox}" Value="">
                                                     <Setter Property="Visibility" Value="Visible"/>
                                                 </DataTrigger>
                                             </Style.Triggers>

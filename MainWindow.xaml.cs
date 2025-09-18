@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace gestion
 {
@@ -14,24 +15,14 @@ namespace gestion
         {
             try
             {
-                // Ouvrir la fenêtre de gestion des utilisateurs
-                // Correction : Il ne faut pas ouvrir une nouvelle instance de MainWindow ici,
-                // car cela crée une boucle d'ouverture de la même fenêtre.
-                // Utilisez la fenêtre appropriée, par exemple UtilisateursWindow.
-                // Exemple :
-                // UtilisateursWindow utilisateursWindow = new UtilisateursWindow();
-                // utilisateursWindow.Show();
-
-                MessageBox.Show("Fonctionnalité de gestion des utilisateurs à implémenter",
-                                "Gestion Utilisateurs", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                // Optionnel: fermer la page d'accueil
-                // this.Close();
+                user gestionUtilisateursWindow = new user(); // Crée une nouvelle instance de la fenêtre de gestion des utilisateurs
+                gestionUtilisateursWindow.Show(); // Affiche la fenêtre
+                this.Close(); // Ferme la fenêtre principale
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors de l'ouverture de la gestion utilisateurs: {ex.Message}",
-                              "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                                "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -39,24 +30,20 @@ namespace gestion
         {
             try
             {
-                // Ici vous pouvez créer une nouvelle fenêtre pour la gestion des casiers
-                MessageBox.Show("Fonctionnalité de gestion des casiers à implémenter",
-                              "Gestion Casiers", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                // Exemple pour une future fenêtre:
-                // CasiersWindow casiersWindow = new CasiersWindow();
-                // casiersWindow.Show();
+                locker gestionCasiersPage = new locker(); // Crée une nouvelle instance de la page de gestion des casiers
+                Frame frame = new Frame(); // Crée un nouveau Frame pour afficher la page
+                frame.Navigate(gestionCasiersPage); // Navigue vers la page de gestion des casiers
+                this.Content = frame; // Remplace le contenu de la fenêtre actuelle
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors de l'ouverture de la gestion casiers: {ex.Message}",
-                              "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                                "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void BtnAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            // Ajoutez ici la logique pour ouvrir le panneau d'administration
             MessageBox.Show("Ouverture du panneau d'administration.");
         }
     }
