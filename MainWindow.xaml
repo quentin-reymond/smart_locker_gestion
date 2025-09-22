@@ -124,7 +124,7 @@
                        HorizontalAlignment="Center"
                        Margin="0,0,0,10"/>
 
-            <TextBlock Text="Sélectionnez une option pour commencer" 
+            <TextBlock Text="Sélectionnez un menu " 
                        FontSize="16" 
                        Foreground="#7F8FA6" 
                        HorizontalAlignment="Center"
@@ -147,7 +147,7 @@
                                 CornerRadius="40" 
                                 Margin="0,0,0,25">
                             <Path Fill="#3498DB" 
-                                  Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" 
+                                  Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A424 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" 
                                   Width="40" Height="40" 
                                   Stretch="Uniform"
                                   HorizontalAlignment="Center" 

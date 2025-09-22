@@ -55,12 +55,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AjouterUtilisateur.xaml.cs">
+      <DependentUpon>AjouterUtilisateur.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LecteurRfid.cs" />
     <Compile Include="locker.xaml.cs">
       <DependentUpon>locker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierUtilisateur.xaml.cs">
+      <DependentUpon>ModifierUtilisateur.xaml</DependentUpon>
     </Compile>
     <Compile Include="user.xaml.cs">
       <DependentUpon>user.xaml</DependentUpon>
     </Compile>
+    <Page Include="AjouterUtilisateur.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="locker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -77,6 +88,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ModifierUtilisateur.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="user.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +122,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="rfid\MasterCom.dll" />
+    <Content Include="rfid\MasterRD.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

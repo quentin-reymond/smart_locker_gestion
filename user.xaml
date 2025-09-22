@@ -248,6 +248,7 @@
 
                             <!-- Users List -->
                             <ListView x:Name="ListViewUsers" 
+                                      ItemsSource="{Binding Users}"
                                       Margin="0,50,0,0"
                                       BorderThickness="0"
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
