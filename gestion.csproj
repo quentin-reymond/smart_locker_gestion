@@ -58,7 +58,8 @@
     <Compile Include="AjouterUtilisateur.xaml.cs">
       <DependentUpon>AjouterUtilisateur.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LecteurRfid.cs" />
+    <Compile Include="rfid\Carte.cs" />
+    <Compile Include="rfid\LecteurRfid.cs" />
     <Compile Include="locker.xaml.cs">
       <DependentUpon>locker.xaml</DependentUpon>
     </Compile>

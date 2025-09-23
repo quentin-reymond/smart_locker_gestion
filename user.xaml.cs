@@ -9,16 +9,71 @@ using GestionAbsence.RFID;
 
 namespace gestion
 {
-    public class Utilisateur
+    public class Utilisateur : INotifyPropertyChanged
     {
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public string Email { get; set; }
-        public string CarteRFID { get; set; }
-        public string Statut { get; set; }
-        public string StatutColor { get; set; }
-        public double StatutWidth { get; set; }
-        public string StatutTextColor { get; set; }
+        private string nom;
+        private string prenom;
+        private string email;
+        private string carteRFID;
+        private string statut;
+        private string statutColor;
+        private double statutWidth;
+        private string statutTextColor;
+
+        public string Nom
+        {
+            get => nom;
+            set { nom = value; OnPropertyChanged(); }
+        }
+
+        public string Prenom
+        {
+            get => prenom;
+            set { prenom = value; OnPropertyChanged(); }
+        }
+
+        public string Email
+        {
+            get => email;
+            set { email = value; OnPropertyChanged(); }
+        }
+
+        public string CarteRFID
+        {
+            get => carteRFID;
+            set { carteRFID = value; OnPropertyChanged(); }
+        }
+
+        public string Statut
+        {
+            get => statut;
+            set { statut = value; OnPropertyChanged(); }
+        }
+
+        public string StatutColor
+        {
+            get => statutColor;
+            set { statutColor = value; OnPropertyChanged(); }
+        }
+
+        public double StatutWidth
+        {
+            get => statutWidth;
+            set { statutWidth = value; OnPropertyChanged(); }
+        }
+
+        public string StatutTextColor
+        {
+            get => statutTextColor;
+            set { statutTextColor = value; OnPropertyChanged(); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public partial class user : Window, INotifyPropertyChanged
@@ -60,6 +115,16 @@ namespace gestion
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
         {
             LecteurRfid lecteur = new LecteurRfid();
+            lecteur.Port = 5; // Remplace par le port correct
+            lecteur.Baud = 19200; // Taux de bauds
+
+            int connectionStatus = lecteur.connectionRs();
+            if (connectionStatus != 0)
+            {
+                MessageBox.Show("Erreur de connexion au lecteur RFID.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             string carteID = lecteur.GetCardID();
 
             if (!string.IsNullOrEmpty(carteID))
@@ -70,7 +135,6 @@ namespace gestion
                 if (ajouterUtilisateurWindow.ShowDialog() == true)
                 {
                     var nouvelUtilisateur = ajouterUtilisateurWindow.NouvelUtilisateur;
-                    nouvelUtilisateur.CarteRFID = carteID;
                     AllUsers.Add(nouvelUtilisateur);
                     Users.Add(nouvelUtilisateur);
                 }
@@ -79,6 +143,8 @@ namespace gestion
             {
                 MessageBox.Show("Aucune carte RFID détectée.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            lecteur.fermetureRs(); // Ferme la connexion après l'utilisation
         }
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
@@ -88,8 +154,7 @@ namespace gestion
 
             if (modifierUtilisateurWindow.ShowDialog() == true)
             {
-                // Les données de l'utilisateur sont mises à jour, pas besoin de rafraîchir la liste.
-                // ObservableCollection gère cela automatiquement.
+                // Les données de l'utilisateur sont mises à jour automatiquement grâce à INotifyPropertyChanged.
             }
         }
 
