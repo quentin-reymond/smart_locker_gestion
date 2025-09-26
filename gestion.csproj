@@ -58,45 +58,24 @@
     <Compile Include="AjouterUtilisateur.xaml.cs">
       <DependentUpon>AjouterUtilisateur.xaml</DependentUpon>
     </Compile>
-    <Compile Include="rfid\Carte.cs" />
-    <Compile Include="rfid\LecteurRfid.cs" />
     <Compile Include="locker.xaml.cs">
       <DependentUpon>locker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ModifierUtilisateur.xaml.cs">
       <DependentUpon>ModifierUtilisateur.xaml</DependentUpon>
     </Compile>
-    <Compile Include="user.xaml.cs">
-      <DependentUpon>user.xaml</DependentUpon>
-    </Compile>
-    <Page Include="AjouterUtilisateur.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="locker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="rfid\Carte.cs" />
+    <Compile Include="rfid\LecteurRfid.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="user.xaml.cs">
+      <DependentUpon>user.xaml</DependentUpon>
     </Compile>
-    <Page Include="ModifierUtilisateur.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="user.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -127,6 +106,28 @@
   <ItemGroup>
     <Content Include="rfid\MasterCom.dll" />
     <Content Include="rfid\MasterRD.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AjouterUtilisateur.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="locker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ModifierUtilisateur.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="user.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

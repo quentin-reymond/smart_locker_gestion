@@ -2,10 +2,6 @@
 <Window x:Class="gestion.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:gestion"
-        mc:Ignorable="d"
         Title="Gestion des Casiers Intelligents" 
         Height="600" Width="900"
         WindowStartupLocation="CenterScreen"
@@ -97,7 +93,7 @@
                           Foreground="#2C3E50"/>
             </StackPanel>
 
-            <Button x:Name="BtnAdminPanel" 
+            <Button x:Name="BtnAdmin" 
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Center" 
                     Margin="40,0"
@@ -174,7 +170,7 @@
                                    MaxWidth="200"/>
 
                         <!-- Button -->
-                        <Button x:Name="BtnGestionUtilisateurs"
+                        <Button x:Name="BtnGestionuser"
                                 Style="{StaticResource ActionButtonStyle}"
                                 Click="BtnGestionUtilisateurs_Click">
                             <StackPanel Orientation="Horizontal">
@@ -225,7 +221,7 @@
                                    MaxWidth="200"/>
 
                         <!-- Button -->
-                        <Button x:Name="BtnGestionCasiers"
+                        <Button x:Name="BtnGestionlocker"
                                 Style="{StaticResource ActionButtonStyle}"
                                 Click="BtnGestionCasiers_Click">
                             <StackPanel Orientation="Horizontal">
