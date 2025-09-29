@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo_SmartLocker.png" alt="SmartLocker Logo" width="200"/>
+  <img src="logo_smart_locker.png" alt="SmartLocker Logo" width="200"/>
 </p>
 
 # 🖥️ SmartLockerAppGestion – Application de Gestion
