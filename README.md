@@ -1,35 +1,34 @@
-# Gestion des Casiers Intelligents
+<p align="center">
+  <img src="logo_SmartLocker.png" alt="SmartLocker Logo" width="200"/>
+</p>
 
-## Description
-Ce projet est une application de gestion des utilisateurs et de leurs cartes RFID pour un système de casiers intelligents. Il permet d'ajouter, de modifier et de supprimer des utilisateurs, ainsi que de gérer leurs informations et statuts.
+# 🖥️ SmartLockerAppGestion – Application de Gestion
 
-## Fonctionnalités
-- **Gestion des utilisateurs** : 
-  - Ajouter de nouveaux utilisateurs avec leurs informations personnelles.
-  - Modifier les informations existantes des utilisateurs.
-  - Supprimer des utilisateurs de la base de données.
+## 🔎 Présentation
 
-- **Scan de cartes RFID** : 
-  - Scanner des cartes RFID pour associer des utilisateurs à leurs casiers intelligents.
+**SmartLockerAppGestion** est l'application de gestion du projet **SmartLocker**, conçue pour les administrateurs.  
+Cette application permet de gérer les utilisateurs, les casiers et de superviser l'activité du système de casiers connectés.
 
-- **Interface utilisateur intuitive** : 
-  - Une interface simple et claire pour naviguer facilement dans les fonctionnalités.
+### Fonctionnalités principales :
+- 👤 **Gestion des utilisateurs** : Ajout, modification et suppression d'utilisateurs.
+- 📦 **Gestion des casiers** : Suivi de l'état des casiers (disponible, réservé, en maintenance).
+- ⏳ **Suivi des sessions** : Visualisation des sessions actives et historique des réservations.
+- 📊 **Tableau de bord** : Statistiques sur l'utilisation des casiers et des utilisateurs.
 
-- **Mise à jour dynamique** : 
-  - Les modifications apportées aux utilisateurs sont immédiatement reflétées dans l'interface.
+---
 
-## Technologies
-- **C#** : Langage de programmation principal utilisé pour le développement.
-- **WPF (Windows Presentation Foundation)** : Framework pour construire l'interface utilisateur.
-- **MVVM (Model-View-ViewModel)** : Modèle de conception utilisé pour organiser le code.
+## 🏗️ Architecture de l'Application
 
-## Installation
-### Prérequis
-- Visual Studio 2019 ou plus récent
-- .NET Framework 4.7.2 ou plus récent
-- Lecteur RFID compatible
+📌 *Un diagramme synoptique de l'application sera inséré ici pour illustrer la structure et les flux de données.*  
+*(Exemple : navigation entre les pages, structure MVVM, appels API.)*
 
-### Étapes d'installation
-1. **Clonez le dépôt** :
-   ```bash
-   git clone https://github.com/votre-utilisateur/nom-du-repo.git
+---
+
+## ⚙️ Technologies Utilisées
+
+- **Framework** : WPF en .NET 9 (C#)  
+- **Architecture** : MVC (Model-View-Controleur) avec Entity Framework Core  
+- **API consommée** : SmartLockerAPI (PHP Slim + JWT)  
+- **Base de données** : MySQL (via Entity Framework Core)  
+- **Outils de design** : Figma, V0.dev (IA design)  
+- **Gestion de versions** : GitHub  
