@@ -1,5 +1,6 @@
-﻿using System.Windows;
-using GestionAbsence.RFID;
+﻿using GestionAbsence.RFID;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace gestion
 {
@@ -17,6 +18,10 @@ namespace gestion
             TxtPrenom.Text = utilisateur.Prenom;
             TxtEmail.Text = utilisateur.Email;
             TxtCarteRFID.Text = utilisateur.CarteRFID;
+
+            // Initialiser le statut
+            CmbStatut.SelectedItem = utilisateur.Statut == "Actif" ?
+                CmbStatut.Items[0] : CmbStatut.Items[1]; // Sélectionner l'élément correspondant
         }
 
         private void BtnScanRFID_Click(object sender, RoutedEventArgs e)
@@ -53,6 +58,9 @@ namespace gestion
             UtilisateurAModifier.Prenom = TxtPrenom.Text;
             UtilisateurAModifier.Email = TxtEmail.Text;
             UtilisateurAModifier.CarteRFID = TxtCarteRFID.Text; // Met à jour la carte RFID
+
+            // Mettre à jour le statut
+            UtilisateurAModifier.Statut = (CmbStatut.SelectedItem as ComboBoxItem)?.Content.ToString();
 
             this.DialogResult = true; // Indique que la modification a été effectuée
             this.Close();

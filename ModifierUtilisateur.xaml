@@ -39,38 +39,50 @@
 
             <TextBlock Text="Carte RFID:" FontWeight="Bold" Margin="0,10,0,5"/>
             <TextBox x:Name="TxtCarteRFID" 
-                      Margin="0,0,0,20" 
+                      Margin="0,0,0,10" 
                       Padding="10" 
                       BorderThickness="1" 
                       BorderBrush="#CCCCCC" 
                       Background="#E9E9E9" 
                       Height="43"/>
 
-            <Button Content="Scanner RFID" 
-                    Click="BtnScanRFID_Click" 
-                    Margin="0,10,0,0" 
-                    Padding="10" 
-                    Background="#4CAF50" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    Cursor="Hand" 
-                    HorizontalAlignment="Center" 
-                    Height="39" 
-                    Width="200"/>
+            <TextBlock Text="Statut:" FontWeight="Bold" Margin="0,10,0,5"/>
+            <ComboBox x:Name="CmbStatut" 
+                       Margin="0,0,0,20" 
+                       Padding="10" 
+                       BorderThickness="1" 
+                       BorderBrush="#CCCCCC" 
+                       Background="White">
+                <ComboBoxItem Content="Actif"/>
+                <ComboBoxItem Content="Inactif"/>
+            </ComboBox>
 
-            <Button Content="Modifier" 
-                    Click="BtnModifier_Click" 
-                    Margin="0,10,0,0" 
-                    Padding="10" 
-                    Background="#4CAF50" 
-                    Foreground="White" 
-                    FontWeight="Bold" 
-                    BorderBrush="Transparent" 
-                    Cursor="Hand" 
-                    HorizontalAlignment="Center" 
-                    Height="39" 
-                    Width="200"/>
+            <!-- StackPanel horizontal pour les boutons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button Content="Scanner RFID" 
+                        Click="BtnScanRFID_Click" 
+                        Margin="0,0,10,0" 
+                        Padding="10" 
+                        Background="#bc4b51" 
+                        Foreground="White" 
+                        FontWeight="Bold" 
+                        BorderBrush="Transparent" 
+                        Cursor="Hand" 
+                        Height="39" 
+                        Width="200"/>
+
+                <Button Content="Modifier" 
+                        Click="BtnModifier_Click" 
+                        Margin="0,0,0,0" 
+                        Padding="10" 
+                        Background="#4CAF50"  
+                        Foreground="White" 
+                        FontWeight="Bold" 
+                        BorderBrush="Transparent" 
+                        Cursor="Hand" 
+                        Height="39" 
+                        Width="200"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using GestionAbsence.RFID; // Assurez-vous d'importer le bon espace de noms
 
 namespace gestion
 {
     public partial class MainWindow : Window
     {
+        private LecteurRfid lecteurRfid; // Instance du lecteur RFID
+
         public MainWindow()
         {
             InitializeComponent();
+            lecteurRfid = new LecteurRfid(); // Initialiser le lecteur RFID
+            lecteurRfid.Port = 5; // Remplacez par le port correct
+            lecteurRfid.connectionRs(); // Connecte le lecteur RFID
         }
 
         private void BtnGestionUtilisateurs_Click(object sender, RoutedEventArgs e)
@@ -45,6 +51,29 @@ namespace gestion
         private void BtnAdminPanel_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Ouverture du panneau d'administration.");
+        }
+
+        private void BtnScanRfid_Click(object sender, RoutedEventArgs e)
+        {
+            // Lire l'ID de la carte RFID lorsque le bouton est cliqué
+            string cardId = lecteurRfid.GetCardID();
+            if (!string.IsNullOrEmpty(cardId))
+            {
+                // Publier l'ID de la carte via MQTT
+                lecteurRfid.PublishCardId(cardId);
+                MessageBox.Show($"Carte RFID lue : {cardId}");
+            }
+            else
+            {
+                MessageBox.Show("Aucune carte détectée.");
+            }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            // Fermer la connexion au lecteur RFID lorsque la fenêtre est fermée
+            lecteurRfid.fermetureRs();
+            base.OnClosed(e);
         }
     }
 }

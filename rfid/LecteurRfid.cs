@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows;
+using uPLibrary.Networking.M2Mqtt; // Ajout de la bibliothèque MQTT
+using uPLibrary.Networking.M2Mqtt.Messages; // Ajout de la bibliothèque MQTT
 
 namespace GestionAbsence.RFID
 {
@@ -49,11 +52,17 @@ namespace GestionAbsence.RFID
             set { identifiant = value; }
         }
 
+        private MqttClient mqttClient; // Client MQTT
+        private string mqttBrokerAddress = "test.mosquitto.org"; // Remplacez par l'adresse IP de votre Raspberry Pi
+
         public LecteurRfid()
         {
             bConnectedDevice = false;
             baud = 19200;
-            // Initialisez le port RFID ici, par exemple : port = <votre_port>;
+
+            // Initialiser le client MQTT
+            mqttClient = new MqttClient(mqttBrokerAddress);
+            mqttClient.Connect(Guid.NewGuid().ToString());
         }
 
         public int connectionRs()
@@ -132,6 +141,14 @@ namespace GestionAbsence.RFID
             return status;
         }
 
+        public void PublishCardId(string cardId)
+        {
+            if (mqttClient.IsConnected)
+            {
+                mqttClient.Publish("rfid/reader", Encoding.UTF8.GetBytes(cardId), MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, false);
+            }
+        }
+
         public string GetCardID()
         {
             int status = lireIdentifiantCarte();
@@ -140,6 +157,9 @@ namespace GestionAbsence.RFID
             {
                 case 0:
                     statusMsg = Identifiant;
+
+                    // Publier l'ID de la carte sur MQTT
+                    PublishCardId(Identifiant);
                     break;
                 case 1:
                     MessageBox.Show("Erreur de vitesse du Port Série", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
