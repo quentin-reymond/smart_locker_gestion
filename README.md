@@ -17,13 +17,6 @@ Cette application permet de gérer les utilisateurs, les casiers et de supervise
 
 ---
 
-## 🏗️ Architecture de l'Application
-
-📌 *Un diagramme synoptique de l'application sera inséré ici pour illustrer la structure et les flux de données.*  
-*(Exemple : navigation entre les pages, structure MVVM, appels API.)*
-
----
-
 ## ⚙️ Technologies Utilisées
 
 - **Framework** : WPF en .NET 9 (C#)  
